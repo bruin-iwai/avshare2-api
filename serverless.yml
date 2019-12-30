@@ -6,6 +6,8 @@ provider:
   region: ${env:AWS_REGION, 'ap-northeast-1'}
   memorySize: 512
   timeout: 30
+  iamManagedPolicies:
+    - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -18,11 +20,29 @@ provider:
     apiGateway: true
     lambda: true
   logRetentionInDays: 14
+  endpointType: regional
+  apiKeys:
+    - ${self:provider.stage}-myFirstKey
 plugins:
   - serverless-layers
   - serverless-plugin-common-excludes
   - serverless-plugin-include-dependencies
   - serverless-pseudo-parameters
+custom:
+  serverless-layers:
+    layersDeploymentBucket: jp-live-bruin-iwai-avshare2-api-layers-deploymentbucket
 functions:
-  hello:
-    handler: handler.hello
+  getContentsList:
+    handler: app/handler.getContentsList
+    events:
+      - http:
+          path: contents/{prefix}
+          method: get
+          private: true
+          cors: true
+          request:
+            parameters:
+              paths:
+                prefix: true
+    environment:
+      BUCKET_NAME: jp-live-bruin-iwai-audio-video

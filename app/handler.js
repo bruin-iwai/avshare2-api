@@ -1,16 +1,17 @@
-module.exports.hello = async (event) => {
+const listUrls = require('./listUrls');
+
+module.exports.getContentsList = async (event) => {
+  console.log(JSON.stringify(event, null, 2));
+
+  const bucket = process.env.BUCKET_NAME;
+  const { prefix } = event.pathParameters;
+  const urls = await listUrls(bucket, prefix);
   return {
     statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
+    headers: {
+      'Access-Control-Allow-Origin': '*', // Required for CORS support to work
+      'Access-Control-Allow-Credentials': true, // Required for cookies, authorization headers with HTTPS
+    },
+    body: JSON.stringify(urls),
   };
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
