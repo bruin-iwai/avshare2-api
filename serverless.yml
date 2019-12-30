@@ -1,0 +1,12 @@
+service: avshare2-api
+provider:
+  name: aws
+  runtime: nodejs12.x
+plugins:
+  - serverless-layers
+  - serverless-plugin-common-excludes
+  - serverless-plugin-include-dependencies
+  - serverless-pseudo-parameters
+functions:
+  hello:
+    handler: handler.hello
