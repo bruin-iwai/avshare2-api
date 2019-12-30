@@ -3,12 +3,12 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 10
+      nodejs: 12
     commands:
       - npm ci
   build:
     commands:
-      - npm run deploy
+      - npm run sls -- deploy
   post_build:
     commands:
       - touch dummy.zip
