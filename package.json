@@ -35,7 +35,10 @@
     "serverless-pseudo-parameters": "^2.5.0"
   },
   "lint-staged": {
-    "*.{js,vue}": "eslint"
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "husky": {
     "hooks": {
