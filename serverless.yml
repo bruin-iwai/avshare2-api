@@ -36,22 +36,13 @@ functions:
     handler: app/handler.getContentsList
     events:
       - http:
-          path: contents/get
+          path: contents/{prefix}
           method: get
           private: true
-          # 2019/12/31現在、lambda-proxy integrationでcorsが正しく処理されなくなっているっぽい。
-          # ドキュメントには「Lambdaのresponseにcors関連のヘッダを含めるように」とあるが、
-          # そもそもlambda-proxyでGETリクエストするとLambdaが呼ばれないまま403応答になるので
-          # Lambdaではなく API Gateway 側の問題と考えられる(AWSの未知のバグか)。
-          # 仕方ないので、lambda integrationを使って明示的にcors関連ヘッダを設定する。
           cors: true
-          allowCredentials: false
-          integration: lambda
           request:
-            template:
-              application/json: '{ "prefix": "$input.params(''prefix'')" }'
-          response:
-            headers:
-              Access-Control-Allow-Origin: "'*'"
+            parameters:
+              paths:
+                prefix: true
     environment:
       BUCKET_NAME: jp-live-bruin-iwai-audio-video
