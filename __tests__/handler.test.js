@@ -14,7 +14,9 @@ describe('handler', () => {
 
   test('getContentsList', async () => {
     const event = {
-      prefix: 'bb',
+      pathParameters: {
+        prefix: 'bb',
+      },
     };
 
     listUrls.mockResolvedValueOnce([
@@ -32,6 +34,10 @@ describe('handler', () => {
 
     expect(ret).toEqual({
       statusCode: 200,
+      headers: {
+        'access-control-allow-origin': '*',
+        'content-type': 'application/json',
+      },
       body: JSON.stringify([
         {
           url: 'https://dummy1',
