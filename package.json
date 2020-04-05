@@ -22,7 +22,7 @@
     "eslint-plugin-jest": "^23.2.0",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^3.1.0",
-    "jest": "^24.9.0",
+    "jest": "^25.2.7",
     "jest-extended": "^0.11.2",
     "jest-runner-eslint": "^0.7.5",
     "lint-staged": "^9.5.0",
