@@ -27,7 +27,6 @@
     "jest-runner-eslint": "^0.7.5",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
-    "prettier-eslint-cli": "^5.0.0",
     "serverless": "^1.67.0",
     "serverless-layers": "^2.1.2",
     "serverless-plugin-common-excludes": "^3.0.0",
