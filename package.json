@@ -21,11 +21,11 @@
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jest": "^23.2.0",
     "eslint-plugin-prettier": "^3.1.2",
-    "husky": "^3.1.0",
+    "husky": "^4.2.5",
     "jest": "^26.1.0",
     "jest-extended": "^0.11.2",
     "jest-runner-eslint": "^0.10.0",
-    "lint-staged": "^9.5.0",
+    "lint-staged": "^10.2.11",
     "prettier": "^1.19.1",
     "serverless": "^1.74.1",
     "serverless-plugin-common-excludes": "^3.0.0",
@@ -34,8 +34,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "husky": {
