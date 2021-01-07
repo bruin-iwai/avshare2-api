@@ -15,6 +15,7 @@
     "aws-sdk": "^2.653.0"
   },
   "devDependencies": {
+    "ajv": "^7.0.3",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.9.0",
@@ -27,10 +28,9 @@
     "jest-runner-eslint": "^0.10.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
-    "serverless": "^1.74.1",
+    "serverless": "^2.18.0",
     "serverless-plugin-common-excludes": "^3.0.0",
-    "serverless-plugin-include-dependencies": "^4.1.0",
-    "serverless-pseudo-parameters": "^2.5.0"
+    "serverless-plugin-include-dependencies": "^4.1.0"
   },
   "lint-staged": {
     "*.js": [

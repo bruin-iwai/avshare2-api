@@ -30,7 +30,6 @@ package:
 plugins:
   - serverless-plugin-common-excludes
   - serverless-plugin-include-dependencies
-  - serverless-pseudo-parameters
 functions:
   getContentsList:
     handler: app/handler.getContentsList
