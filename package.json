@@ -4,6 +4,7 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
+    "prettier:check": "prettier --check *.js **/*.js",
     "lint": "eslint --ignore-path .gitignore .",
     "test": "jest",
     "codecov": "codecov",
@@ -24,7 +25,6 @@
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jest": "^23.2.0",
-    "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "jest-extended": "^0.11.2",
@@ -36,6 +36,7 @@
   },
   "lint-staged": {
     "*.js": [
+      "prettier --write --ignore-unknown",
       "eslint --fix"
     ]
   },
