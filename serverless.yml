@@ -8,6 +8,7 @@ provider:
   timeout: 30
   iamManagedPolicies:
     - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    - arn:aws:iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -45,3 +46,5 @@ functions:
                 prefix: true
     environment:
       BUCKET_NAME: jp-live-bruin-iwai-audio-video
+    layers:
+      - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:14"
