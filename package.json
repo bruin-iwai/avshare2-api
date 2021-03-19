@@ -5,6 +5,7 @@
   "main": "handler.js",
   "scripts": {
     "test": "jest",
+    "codecov": "codecov",
     "sls": "sls"
   },
   "keywords": [],
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "ajv": "^7.0.3",
+    "codecov": "^3.8.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.9.0",
