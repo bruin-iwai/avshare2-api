@@ -9,8 +9,8 @@ module.exports.getContentsList = async (event) => {
   return {
     statusCode: 200,
     headers: {
-      'access-control-allow-origin': '*',
       'content-type': 'application/json',
+      'access-control-allow-origin': '*',
     },
     body: JSON.stringify(urls),
   };
