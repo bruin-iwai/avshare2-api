@@ -23,8 +23,9 @@ provider:
     lambda: true
   logRetentionInDays: 14
   endpointType: regional
-  apiKeys:
-    - ${self:provider.stage}-myFirstKey
+  apiGateway:
+    apiKeys:
+      - ${self:provider.stage}-myFirstKey
 package:
   patterns:
     - app/**
