@@ -25,9 +25,23 @@ provider:
   apiKeys:
     - ${self:provider.stage}-myFirstKey
 package:
-  exclude:
-    - ./**
-    - node_modules/**/aws-sdk/**
+  patterns:
+    - app/**
+    - '!.github/**'
+    - '!coverage/**'
+    - '!__mocks__/**'
+    - '!__tests__/**'
+    - '!.eslintrc.yml'
+    - '!.gitignore'
+    - '!.prettierignore'
+    - '!.prettierrc.yml'
+    - '!buildspec*'
+    - '!jest.config.js'
+    - '!package*.json'
+    - '!*.md'
+    - '!serverless.yml'
+    - '!node_modules/**/aws-sdk/**'
+  excludeDevDependencies: false
 plugins:
   - serverless-plugin-common-excludes
   - serverless-plugin-include-dependencies
