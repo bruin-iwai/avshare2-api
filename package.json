@@ -6,8 +6,7 @@
   "scripts": {
     "prettier:check": "prettier --check *.js **/*.js",
     "lint": "eslint --ignore-path .gitignore .",
-    "test": "jest",
-    "sls": "sls"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
