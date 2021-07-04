@@ -1,22 +1,19 @@
-const AWS = require('aws-sdk');
+const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
 const map = require('async/map');
-const getSignedUrl = require('./getSignedUrl');
-
-const s3 = new AWS.S3();
+const generateSignedUrl = require('./generateSignedUrl');
 
 module.exports = async function listUrls(bucket, prefix) {
   // S3からindex.jsonをダウンロード
-  const index = await s3
-    .getObject({
-      Bucket: bucket,
-      Key: `${prefix}/index.json`,
-    })
-    .promise()
-    .then((ret) => JSON.parse(ret.Body.toString()));
+  const client = new S3Client();
+  const command = new GetObjectCommand({
+    Bucket: bucket,
+    Key: `${prefix}/index.json`,
+  });
+  const index = await client.send(command).then((ret) => JSON.parse(ret.Body.toString()));
 
   // index.jsonのfiles[].{file, title}を取得し、fileをsingedUrlに変換する
   const urls = await map(index.files, async (item) => {
-    const url = await getSignedUrl(bucket, prefix, item.file);
+    const url = await generateSignedUrl(bucket, prefix, item.file);
     return {
       url,
       title: item.title,
