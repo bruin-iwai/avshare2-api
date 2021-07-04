@@ -16,6 +16,7 @@
     "@aws-sdk/client-s3": "^3.20.0",
     "@aws-sdk/s3-request-presigner": "^3.20.0",
     "async": "^3.2.0",
+    "aws-xray-sdk": "^3.3.3",
     "get-stream": "^6.0.1"
   },
   "devDependencies": {
