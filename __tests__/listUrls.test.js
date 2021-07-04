@@ -1,27 +1,28 @@
+const getStream = require('get-stream');
 const listUrls = require('../app/listUrls');
 const { mockS3Send, mockS3GetObjectCommand } = require('../__mocks__/@aws-sdk/client-s3');
 const generateSignedUrl = require('../app/generateSignedUrl');
 
+jest.mock('get-stream', () => jest.fn());
 jest.mock('../app/generateSignedUrl');
 
 describe('listUrls', () => {
   test('main', async () => {
-    mockS3Send.mockResolvedValueOnce({
-      Body: Buffer.from(
-        JSON.stringify({
-          files: [
-            {
-              file: 'aa.mp4',
-              title: 'ああ',
-            },
-            {
-              file: 'bb.mp4',
-              title: 'いい',
-            },
-          ],
-        })
-      ),
-    });
+    mockS3Send.mockResolvedValueOnce({ Body: 'body' });
+    getStream.mockResolvedValueOnce(
+      JSON.stringify({
+        files: [
+          {
+            file: 'aa.mp4',
+            title: 'ああ',
+          },
+          {
+            file: 'bb.mp4',
+            title: 'いい',
+          },
+        ],
+      })
+    );
 
     generateSignedUrl
       .mockResolvedValueOnce('https://dummy1')
@@ -49,5 +50,8 @@ describe('listUrls', () => {
     expect(generateSignedUrl).toHaveBeenCalledTimes(2);
     expect(generateSignedUrl).toHaveBeenNthCalledWith(1, 'bucket1', 'prefix1', 'aa.mp4');
     expect(generateSignedUrl).toHaveBeenNthCalledWith(2, 'bucket1', 'prefix1', 'bb.mp4');
+
+    expect(getStream).toHaveBeenCalledTimes(1);
+    expect(getStream).toHaveBeenCalledWith('body');
   });
 });
