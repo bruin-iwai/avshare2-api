@@ -1,29 +1,32 @@
+const getStream = require('get-stream');
 const listUrls = require('../app/listUrls');
-const { mockAwsPromise, mockS3GetObject } = require('../__mocks__/aws-sdk');
-const getSignedUrl = require('../app/getSignedUrl');
+const { mockS3Send, mockS3GetObjectCommand } = require('../__mocks__/@aws-sdk/client-s3');
+const generateSignedUrl = require('../app/generateSignedUrl');
 
-jest.mock('../app/getSignedUrl');
+jest.mock('get-stream', () => jest.fn());
+jest.mock('../app/generateSignedUrl');
 
 describe('listUrls', () => {
   test('main', async () => {
-    mockAwsPromise.mockResolvedValueOnce({
-      Body: Buffer.from(
-        JSON.stringify({
-          files: [
-            {
-              file: 'aa.mp4',
-              title: 'ああ',
-            },
-            {
-              file: 'bb.mp4',
-              title: 'いい',
-            },
-          ],
-        })
-      ),
-    });
+    mockS3Send.mockResolvedValueOnce({ Body: 'body' });
+    getStream.mockResolvedValueOnce(
+      JSON.stringify({
+        files: [
+          {
+            file: 'aa.mp4',
+            title: 'ああ',
+          },
+          {
+            file: 'bb.mp4',
+            title: 'いい',
+          },
+        ],
+      })
+    );
 
-    getSignedUrl.mockResolvedValueOnce('https://dummy1').mockResolvedValueOnce('https://dummy2');
+    generateSignedUrl
+      .mockResolvedValueOnce('https://dummy1')
+      .mockResolvedValueOnce('https://dummy2');
 
     const urls = await listUrls('bucket1', 'prefix1');
 
@@ -38,14 +41,17 @@ describe('listUrls', () => {
       },
     ]);
 
-    expect(mockS3GetObject).toHaveBeenCalledTimes(1);
-    expect(mockS3GetObject).toHaveBeenCalledWith({
+    expect(mockS3GetObjectCommand).toHaveBeenCalledTimes(1);
+    expect(mockS3GetObjectCommand).toHaveBeenCalledWith({
       Bucket: 'bucket1',
       Key: 'prefix1/index.json',
     });
 
-    expect(getSignedUrl).toHaveBeenCalledTimes(2);
-    expect(getSignedUrl).toHaveBeenNthCalledWith(1, 'bucket1', 'prefix1', 'aa.mp4');
-    expect(getSignedUrl).toHaveBeenNthCalledWith(2, 'bucket1', 'prefix1', 'bb.mp4');
+    expect(generateSignedUrl).toHaveBeenCalledTimes(2);
+    expect(generateSignedUrl).toHaveBeenNthCalledWith(1, 'bucket1', 'prefix1', 'aa.mp4');
+    expect(generateSignedUrl).toHaveBeenNthCalledWith(2, 'bucket1', 'prefix1', 'bb.mp4');
+
+    expect(getStream).toHaveBeenCalledTimes(1);
+    expect(getStream).toHaveBeenCalledWith('body');
   });
 });

@@ -1,4 +1,5 @@
 service: avshare2-api
+
 provider:
   name: aws
   runtime: nodejs14.x
@@ -17,6 +18,7 @@ provider:
           Resource:
             - arn:aws:s3:::jp-live-bruin-iwai-audio-video/*
   deploymentBucket:
+    name: jp-live-bruin-iwai-serverlessdeploymentbucket
     blockPublicAccess: true
   tracing:
     apiGateway: true
@@ -27,13 +29,16 @@ provider:
     apiKeys:
       - ${self:provider.stage}-myFirstKey
   lambdaHashingVersion: '20201221'
+
 package:
   patterns:
     - app/**
     - '!.github/**'
+    - '!.husky/**'
     - '!coverage/**'
     - '!__mocks__/**'
     - '!__tests__/**'
+    - '!.eslintcache'
     - '!.eslintrc.yml'
     - '!.gitignore'
     - '!.prettierignore'
@@ -44,10 +49,10 @@ package:
     - '!*.md'
     - '!serverless.yml'
     - '!node_modules/**/aws-sdk/**'
-  excludeDevDependencies: false
+
 plugins:
-  - serverless-plugin-common-excludes
-  - serverless-plugin-include-dependencies
+  - serverless-layers
+
 functions:
   getContentsList:
     handler: app/handler.getContentsList
