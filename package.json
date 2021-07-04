@@ -30,8 +30,7 @@
     "lint-staged": "^11.0.0",
     "prettier": "^2.0.5",
     "serverless": "^2.41.2",
-    "serverless-plugin-common-excludes": "^3.0.0",
-    "serverless-plugin-include-dependencies": "^4.1.0"
+    "serverless-layers": "^2.5.0-beta"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
