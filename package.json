@@ -30,8 +30,7 @@
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
     "prettier": "^2.6.0",
-    "serverless": "^3.7.8",
-    "serverless-layers": "^2.5.3"
+    "serverless": "^3.7.8"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
