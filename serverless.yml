@@ -1,4 +1,5 @@
 service: avshare2-api
+deprecationNotificationMode: error
 
 provider:
   name: aws
@@ -29,7 +30,6 @@ provider:
   apiGateway:
     apiKeys:
       - ${self:provider.stage}-myFirstKey
-  lambdaHashingVersion: '20201221'
 
 package:
   patterns:

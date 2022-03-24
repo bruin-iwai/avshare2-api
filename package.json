@@ -13,9 +13,9 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.54.1",
-    "@aws-sdk/s3-request-presigner": "^3.54.1",
-    "@aws-sdk/signature-v4-crt": "^3.54.1",
+    "@aws-sdk/client-s3": "^3.55.0",
+    "@aws-sdk/s3-request-presigner": "^3.55.0",
+    "@aws-sdk/signature-v4-crt": "^3.55.0",
     "async": "^3.2.3",
     "aws-xray-sdk": "^3.3.4",
     "get-stream": "^6.0.1"
@@ -25,12 +25,12 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jest": "^26.1.1",
+    "eslint-plugin-jest": "^26.1.2",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
     "prettier": "^2.6.0",
-    "serverless": "^3.7.8"
+    "serverless": "^3.8.0"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
