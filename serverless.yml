@@ -3,7 +3,7 @@ deprecationNotificationMode: error
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs16.x
   stage: dev
   region: ap-northeast-1
   memorySize: 512
