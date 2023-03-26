@@ -1,7 +1,9 @@
-const { getContentsList } = require('../app/handler');
-const listUrls = require('../app/listUrls');
+import { APIGatewayProxyEvent } from 'aws-lambda';
+import { getContentsList } from '~/handler';
+import listUrls from '~/listUrls';
 
-jest.mock('../app/listUrls');
+jest.mock('~/listUrls');
+const mockedListUrls = listUrls as jest.MockedFunction<typeof listUrls>;
 
 describe('handler', () => {
   beforeEach(() => {
@@ -19,7 +21,7 @@ describe('handler', () => {
       },
     };
 
-    listUrls.mockResolvedValueOnce([
+    mockedListUrls.mockResolvedValueOnce([
       {
         url: 'https://dummy1',
         title: 'ああ',
@@ -30,7 +32,7 @@ describe('handler', () => {
       },
     ]);
 
-    const ret = await getContentsList(event);
+    const ret = await getContentsList(event as unknown as APIGatewayProxyEvent);
 
     expect(ret).toEqual({
       statusCode: 200,

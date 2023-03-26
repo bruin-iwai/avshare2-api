@@ -1,17 +1,23 @@
-module.exports = {
+import type { Config } from 'jest';
+
+const jestConfig: Config = {
   projects: [
     {
+      moduleNameMapper: {
+        '^~/(.*)$': '<rootDir>/app/$1',
+      },
       displayName: 'test',
       clearMocks: true,
       testEnvironment: 'node',
-      testPathIgnorePatterns: ['/node_modules/', '/__tests__/test-utils.js'],
     },
   ],
   collectCoverage: true,
-  collectCoverageFrom: ['index.js', 'app/**/*.js'],
+  collectCoverageFrom: ['app/**/*.ts'],
   coverageThreshold: {
     global: {
       statements: 95,
     },
   },
 };
+
+export default jestConfig;
