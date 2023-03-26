@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { getContentsList } from '~/handler';
 import listUrls from '~/listUrls';
@@ -5,13 +6,15 @@ import listUrls from '~/listUrls';
 jest.mock('~/listUrls');
 const mockedListUrls = listUrls as jest.MockedFunction<typeof listUrls>;
 
+let replacedEnv: jest.Replaced<typeof process.env> | undefined = undefined;
+
 describe('handler', () => {
   beforeEach(() => {
-    process.env.BUCKET_NAME = 'aa';
+    replacedEnv = jest.replaceProperty(process, 'env', { BUCKET_NAME: 'aa' });
   });
 
   afterEach(() => {
-    delete process.env.BUCKET_NAME;
+    replacedEnv?.restore();
   });
 
   test('getContentsList', async () => {
