@@ -4,7 +4,8 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "prettier:check": "prettier --ignore-path .gitignore --check *.js **/*.js",
+    "prettier:check": "prettier --check --ignore-path .gitignore *.{js,ts} **/*.{js,ts}",
+    "prettier:write": "prettier --write --ignore-path .gitignore *.{js,ts} **/*.{js,ts}",
     "lint": "eslint --ignore-path .gitignore .",
     "test": "jest",
     "prepare": "husky install"
@@ -21,7 +22,12 @@
     "get-stream": "^6.0.1"
   },
   "devDependencies": {
+    "@aws-sdk/types": "^3.296.0",
+    "@types/async": "^3.2.18",
+    "@types/aws-lambda": "^8.10.114",
     "@types/node": "^18.15.10",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
     "esbuild": "^0.16.17",
     "eslint": "^8.36.0",
     "eslint-config-airbnb-base": "^15.0.0",
