@@ -3,7 +3,7 @@ deprecationNotificationMode: error
 
 provider:
   name: aws
-  runtime: nodejs16.x
+  runtime: nodejs18.x
   stage: dev
   region: ap-northeast-1
   memorySize: 512
@@ -31,25 +31,14 @@ provider:
     apiKeys:
       - ${self:provider.stage}-myFirstKey
 
-package:
-  patterns:
-    - app/**
-    - '!.github/**'
-    - '!.husky/**'
-    - '!coverage/**'
-    - '!__mocks__/**'
-    - '!__tests__/**'
-    - '!.eslintcache'
-    - '!.eslintrc.yml'
-    - '!.gitignore'
-    - '!.prettierignore'
-    - '!.prettierrc.yml'
-    - '!buildspec*'
-    - '!jest.config.js'
-    - '!package*.json'
-    - '!*.md'
-    - '!serverless.yml'
-    - '!node_modules/**/aws-sdk/**'
+plugins:
+  - serverless-esbuild
+  - serverless-plugin-lambda-insights
+
+custom:
+  lambdaInsights:
+    defaultLambdaInsights: true
+    lambdaInsightsVersion: 32
 
 functions:
   getContentsList:
@@ -66,5 +55,3 @@ functions:
                 prefix: true
     environment:
       BUCKET_NAME: jp-live-bruin-iwai-audio-video
-    layers:
-      - arn:aws:lambda:ap-northeast-1:580247275435:layer:LambdaInsightsExtension:25
