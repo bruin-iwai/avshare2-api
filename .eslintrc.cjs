@@ -13,6 +13,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   env: {
+    node: true,
     jest: true,
   },
   rules: {
