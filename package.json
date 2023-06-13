@@ -14,7 +14,7 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.299.0",
+    "@aws-sdk/client-s3": "^3.350.0",
     "@aws-sdk/s3-request-presigner": "^3.299.0",
     "@aws-sdk/signature-v4-crt": "^3.299.0",
     "async": "^3.2.4",
