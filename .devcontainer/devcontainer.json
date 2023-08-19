@@ -3,26 +3,29 @@
 {
 	"name": "Node.js & TypeScript",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	// "image": "mcr.microsoft.com/devcontainers/typescript-node:0-18",
-  "build": {
-    // Path is relataive to the devcontainer.json file.
-    "dockerfile": "Dockerfile",
-    "args": {
-      "VARIANT": "bullseye",
-      "BUILDKIT_INLINE_CACHE": "0"
-    }
-  },
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:18",
+  // "build": {
+  //   // Path is relataive to the devcontainer.json file.
+  //   "dockerfile": "Dockerfile",
+  //   "args": {
+  //     "VARIANT": "bullseye",
+  //     "BUILDKIT_INLINE_CACHE": "0"
+  //   }
+  // },
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"features": {
+    "ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
+      "packages": "bash-completion"
+    },
+    "ghcr.io/devcontainers/features/aws-cli:1": {}
+  },
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": {
-    "git-secrets": "(git secrets --install --force | /bin/true) && git secrets --register-aws"
-  },
+	"postCreateCommand": "bash .devcontainer/install-dev-tools.sh",
 
 	// Configure tool-specific properties.
 	"customizations": {
