@@ -14,14 +14,14 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.363.0",
-    "@aws-sdk/s3-request-presigner": "^3.363.0",
-    "@aws-sdk/signature-v4-crt": "^3.363.0",
+    "@aws-sdk/client-s3": "^3.395.0",
+    "@aws-sdk/s3-request-presigner": "^3.395.0",
+    "@aws-sdk/signature-v4-crt": "^3.391.0",
     "async": "^3.2.4",
-    "aws-xray-sdk": "^3.4.1"
+    "aws-xray-sdk": "^3.5.1"
   },
   "devDependencies": {
-    "@aws-sdk/types": "^3.357.0",
+    "@aws-sdk/types": "^3.391.0",
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.21.0",
